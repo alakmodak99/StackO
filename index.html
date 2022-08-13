@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            position: relative;
+        }
+       #container{
+        width: 25%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(5,19%);
+        justify-content: space-between;
+        border: 1px solid red;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        background: rgb(6, 234, 188);
+       }
+  #mainDiv{
+    padding: 5px;
+  }
+       #div2{
+        border: 1px dashed;
+        position: relative;
+        width: 90%;
+        height: 60%;
+        padding: 3px;
+        margin: auto;
+        margin-bottom: 10px;
+        background: white;
+       }
+        #char{
+        font-size: 50px;
+        text-align: center;
+        margin-top: 15%;
+        margin-bottom: 15%;
+      }
+       #div1{
+        padding: 2px;
+        width: 100%;
+        border: 1px solid green;
+        background: white;
+       }
+       #spcl{
+        position: absolute;
+        top: 2%;
+        left: 2%;
+       }
+       #line{
+        width: 100%;
+        height: 5px;
+        margin-top: 5px;
+        background: black;
+       }
+       #point{
+        position: absolute;
+        bottom: 1%;
+        right: 3%;
+       }
+       #Nav{
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid red;
+        width: 23.8%;
+        height: 80px;
+        position: absolute;
+        top: 0%;
+        left: 37.5%;
+        padding: 10px;
+        background: rgb(6, 182, 129);
+        
+       }
+       #Nav > h1{
+        margin-top: 5%;
+       }
+       #Score{
+        position: absolute;
+        width: 25%;
+        height: 80px;
+        top:89%;
+        right: 37.5%;
+        background-color: aqua;
+       }
+       #op{
+        text-align: center;
+        margin-top: 5%;
+       }
+       #right{
+        right: 20px;
+        top: 30%;
+        position: absolute;
+       }
+       #bin{
+        left: 20px;
+        top: 30%;
+        position: absolute;
+       }
+       #Tap{
+        position: absolute;
+        background: rgb(7, 156, 92);
+        color: white;
+        padding: 10px 15px;
+        top: 100%;
+        right: 44%;
+       }
+    </style>
+</head>
+<body>
+    <div id="container">
+    </div>
+    <div id="Nav">
+        <h1 id="Timer">1</h1>
+        <h1 id="Points">0</h1>
+        <h1 id="Tiles left"><b id="T"></b><br> <p style="font-size: 15px;">Tiles left</p></h1>
+    </div>
+    <div id="Score">
+        <img height="20px" id="bin" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYLB-9FQdklsmnxHZ3DQcW9Fzxvem8Aa3sQ8N8B8aXng&s" alt="">
+        <p id="op"></p>
+        <img height="20px" id="right" src="data:image/jpeg;base64,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" alt="">
+    </div>
+    <div id="Tap">Tap on the Word to remove</div>
+    
+</body>
+</html>
+<script>
+    const str ="BCDFGHJKLMNPQRSTVWXYZ"
+    var StrArr=str.split("")
+    const PontObj={"A":1,"B":3,"C":3,"D":2,"E":1, "F":4, "G":2, "H":4,
+"I":1, "J":8, "K":5, "L":1, "M":3, "N":1, "O":1, "P":3, "Q":10, "R":1,
+ "S":1, "T":1, "U":1, "V":4,"W":4,"X":8,"Y":4,"Z":10}
+    const vowel = "AEIOU"
+    var VowelArr =vowel.split("");
+    const SP =["DL","TL","TW","DW"]
+    var UltimateArr=[]
+    CreatingObject(StrArr,VowelArr)
+    function CreatingObject(StrArr,VowelArr){
+        shuffle(StrArr)
+        var newStrArr=StrArr.slice(6)
+        console.log("ff",newStrArr)
+    let MainArr =[...VowelArr,...newStrArr];
+    console.log("Arr",MainArr)
+shuffle(MainArr)
+    while(MainArr.length){
+        shuffle(MainArr)
+   let obj={}
+   obj["Chars"] =MainArr[MainArr.length-1];
+   let occur=Math.random()*4 | 0
+   obj["Occur"]=occur+1
+   obj["Points"] = PontObj[MainArr[MainArr.length-1]]
+   obj["SpecialPower"]="No"
+   UltimateArr.push(obj)
+   MainArr.pop()
+    }
+    console.log(UltimateArr)
+    }
+    function shuffle(a) {
+    let j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+for(let i=0;i<SP.length;i++){
+while(true){
+    let j = Math.floor(Math.random() * (20));
+    if(UltimateArr[j].SpecialPower ==="No"){
+        UltimateArr[j].SpecialPower= SP[i]
+        break; 
+    }
+}
+}
+console.log("dd",UltimateArr)
+    console.log(StrArr, VowelArr)
+     DisplayData(UltimateArr)
+     let S=[],Score=0,tile=50,a=0,b=0,c=0,d=0
+     document.getElementById("T").textContent=`${tile}`
+     let time=100
+     setInterval(()=>{
+        document.getElementById("Timer").textContent=`${--time}`
+        if(time==0){
+            clearInterval()
+            alert("Game Over")
+        }
+    
+     },1000)
+function DisplayData(UltimateArr){
+    document.getElementById("container").innerHTML=""
+    UltimateArr.map((e,i)=>{
+        let maindiv=document.createElement("div")
+        maindiv.setAttribute("id","mainDiv")
+        let newdiv =document.createElement("div")
+        newdiv.setAttribute("id","div1")
+        let div = document.createElement("div")
+        div.setAttribute("id","div2")
+        let h1=document.createElement("p")
+        h1.setAttribute("id","char")
+        h1.textContent=e.Chars
+        let point =document.createElement("p")
+        point.setAttribute("id","point")
+        point.textContent=e.Points
+        let sp=document.createElement("p")
+        sp.setAttribute("id","spcl")
+        if(e.SpecialPower=="DL"){
+            div.style.background="green"
+            h1.style.color="white"
+            sp.style.color="white"
+            point.style.color="white"
+        }
+        if(e.SpecialPower=="DW"){
+            div.style.background="teal"
+            h1.style.color="white"
+            sp.style.color="white"
+            point.style.color="white"
+        }
+        if(e.SpecialPower=="TW"){
+            div.style.background="blue"
+            h1.style.color="white"
+            sp.style.color="white"
+            point.style.color="white"
+        }
+        if(e.SpecialPower=="TL"){
+            div.style.background="grey"
+            h1.style.color="white"
+            sp.style.color="white"
+            point.style.color="white"
+        }
+        sp.textContent=(e.SpecialPower == "No")? "" : e.SpecialPower
+
+        div.append(h1,sp,point)
+        newdiv.append(div)
+        maindiv.append(div)
+        if(e.Occur<1){
+            maindiv.style.visibility="hidden"
+        }
+        for(let i=0;i<e.Occur-1;i++){
+            let linediv = document.createElement("div")
+            linediv.setAttribute("id","line")
+           maindiv.append(linediv)
+        } 
+        div.addEventListener("click",()=>{
+            // e.Occur -=1
+            if(e.Occur>0)
+            {
+                e.Occur--;
+                S.push(e.Chars);
+                if(e.SpecialPower == "DL")
+                {
+                    printWord(e.Points*2)
+                }
+                else if(e.SpecialPower == "TL")
+                {
+                    printWord(e.Points*3)
+                }
+                else
+                printWord(e.Points);
+            }
+            DisplayData(UltimateArr);
+        })
+        document.getElementById("container").append(maindiv)
+
+    })
+}
+document.getElementById("bin").addEventListener("click", ()=>{
+    alert("Starting from the Beginning")
+    window.location.reload()
+})
+document.getElementById("right").addEventListener("click", ()=>{
+    alert(`Your score is ${Score}`)
+    window.location.reload()
+})
+document.getElementById("op").addEventListener("click",()=>{
+    if(S.length > 0)
+    {
+        for(var el of UltimateArr){
+            if(S[S.length-1] == el.Chars)
+            {
+                el.Occur++;
+                DisplayData(UltimateArr);
+                S.pop();
+                // score-=el.Points;
+                if(el.SpecialPower == "DL")
+                {
+                    printWord(-el.Points*2)
+                }
+                else if(el.SpecialPower == "TL")
+                {
+                    printWord(-el.Points*3)
+                }
+                else
+                printWord(-el.Points);
+                break
+            }
+        }
+        if(S.length == 0)
+        {
+            document.getElementById("op").innerText="No Tile"
+        }
+    }
+
+            })
+function printWord(points)
+{
+    let wordDiv = document.getElementById("op");
+    wordDiv.innerText = S.join("");
+    Score+=points
+    tile--;
+    if(tile==0){
+        alert("No Tiles are Left")
+        window.location.reload()
+    }
+    let scoreDiv = document.getElementById("Points");
+    scoreDiv.innerText = Score;
+    document.getElementById("T").innerText = tile;
+}
+</script>
